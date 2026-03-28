@@ -69,37 +69,37 @@ function App() {
   }, [step, isTransitioning]);
 
   const traceDataLogin = [
-    { triggerStep: 0, title: "System Idle", desc: "Awaiting incoming client login request." },
-    { triggerStep: 1, title: "User Interaction", desc: "Client opens the Amazon login portal." },
-    { triggerStep: 2, title: "Data Entry", desc: "Client inputs email address: user@amazon.com." },
-    { triggerStep: 3, title: "Data Entry", desc: "Client inputs password locally, masked for security." },
-    { triggerStep: 4, title: "User Submits Form", desc: "Client clicks 'Continue' to initiate login pipeline." },
-    { triggerStep: 5, title: "Client Dispatch", desc: "Frontend constructs a secure HTTPS POST payload and dispatches it over the network." },
-    { triggerStep: 6, title: "Gateway Router", desc: "API Gateway intercepts the traffic, applies rate-limiting, and routes it to Auth microservice." },
-    { triggerStep: 7, title: "Auth Validation", desc: "Login Service receives the payload and prepares the identity verification protocol." },
-    { triggerStep: 8, title: "Database Query", desc: "Login Service securely queries the User Database for the account's stored hash." },
-    { triggerStep: 9, title: "Hash Verification", desc: "Database engine performs a CPU-intensive Argon2 cryptographic hash comparison. Match found." },
-    { triggerStep: 10, title: "Token Generation", desc: "Identity confirmed. A signed JSON Web Token (JWT) is generated for session access." },
-    { triggerStep: 11, title: "Response Routing", desc: "Login Service passes the encapsulated token response back to the API Gateway." },
-    { triggerStep: 12, title: "Egress Delivery", desc: "Browser securely stores the Token in an HttpOnly cookie. Login complete." },
-    { triggerStep: 13, title: "Flow Complete", desc: "User is successfully granted access. System returning to idle state." }
+    { triggerStep: 0, title: "Waiting", desc: "The system is ready and waiting for someone to try logging in." },
+    { triggerStep: 1, title: "Opening Page", desc: "You just landed on the Login page of the website." },
+    { triggerStep: 2, title: "Email Entry", desc: "You are typing your email address into the box." },
+    { triggerStep: 3, title: "Password Entry", desc: "You are safely typing your secret password." },
+    { triggerStep: 4, title: "Clicking Login", desc: "You clicked the 'Continue' button to start the login process." },
+    { triggerStep: 5, title: "Sending Data", desc: "Your browser is sending your email and password to the server safely." },
+    { triggerStep: 6, title: "Security Gate", desc: "The server's front door (API Gateway) checks if the request is allowed." },
+    { triggerStep: 7, title: "Checking ID", desc: "The Login Service gets your data and prepares to verify your identity." },
+    { triggerStep: 8, title: "Finding You", desc: "The service looks for your account details in the big digital filing cabinet (Database)." },
+    { triggerStep: 9, title: "Password Check", desc: "The system compares your typed password with the one stored safely in the database." },
+    { triggerStep: 10, title: "Making a Key", desc: "Everything matches! The system creates a special digital 'key' (Token) for your session." },
+    { triggerStep: 11, title: "Sending Success", desc: "The server sends the digital key back to your browser." },
+    { triggerStep: 12, title: "Logged In!", desc: "Your browser saves the key. You are now successfully logged in!" },
+    { triggerStep: 13, title: "All Done", desc: "The process is complete and the system is back to normal." }
   ];
 
   const traceDataRegister = [
-    { triggerStep: 0, title: "System Idle", desc: "Awaiting incoming client registration request." },
-    { triggerStep: 1, title: "User Interaction", desc: "Client opens the Amazon 'Create account' portal." },
-    { triggerStep: 2, title: "Data Entry", desc: "Client securely inputs Name and Email locally." },
-    { triggerStep: 3, title: "Data Entry", desc: "Client inputs and confirms Password locally." },
-    { triggerStep: 4, title: "User Submits Form", desc: "Client clicks 'Verify email' to initialize account creation." },
-    { triggerStep: 5, title: "Client Dispatch", desc: "Frontend constructs a secure HTTPS POST payload and dispatches it over the network." },
-    { triggerStep: 6, title: "Gateway Router", desc: "API Gateway intercepts the traffic, applies rate-limiting, and routes it to Auth microservice." },
-    { triggerStep: 7, title: "Argon2 Hashing", desc: "Registration Service generates a secure cryptographic salt and hashes the plaintext password." },
-    { triggerStep: 8, title: "Database Insert", desc: "Registration Service securely dispatches an INSERT command to the Database cluster." },
-    { triggerStep: 9, title: "Record Persistent", desc: "Database engine successfully writes the new user record to disk." },
-    { triggerStep: 10, title: "Token Generation", desc: "Account created. A signed JSON Web Token (JWT) is generated for immediate session access." },
-    { triggerStep: 11, title: "Response Routing", desc: "Registration Service passes the encapsulated token response back to the API Gateway." },
-    { triggerStep: 12, title: "Session Hydration", desc: "Browser securely stores the Token. Account registration complete." },
-    { triggerStep: 13, title: "Flow Complete", desc: "User is successfully granted access. System returning to idle state." }
+    { triggerStep: 0, title: "Waiting", desc: "The system is resting and waiting for a new user to sign up." },
+    { triggerStep: 1, title: "Opening Page", desc: "You just clicked 'Create account' to start the journey." },
+    { triggerStep: 2, title: "Your Info", desc: "You are filling in your name and email address." },
+    { triggerStep: 3, title: "Setting Password", desc: "You are choosing a strong password for your new account." },
+    { triggerStep: 4, title: "Joining Up", desc: "You clicked 'Verify email' to officially send your request." },
+    { triggerStep: 5, title: "Sending Info", desc: "Your browser packages your info and sends it across the internet to the server." },
+    { triggerStep: 6, title: "Security Gate", desc: "The server's 'front desk' (API Gateway) confirms the request is okay." },
+    { triggerStep: 7, title: "Protecting Data", desc: "The server scrambles your password into a secret code (Hashing) so no one can read it." },
+    { triggerStep: 8, title: "Saving You", desc: "The server tells the database to create a permanent spot for your new account." },
+    { triggerStep: 9, title: "Success!", desc: "The database confirms your account has been safely written down." },
+    { triggerStep: 10, title: "Making a Key", desc: "The system creates a digital 'key' (Token) so you can start using the site right away." },
+    { triggerStep: 11, title: "Coming Home", desc: "The server sends the welcome message and your key back to your browser." },
+    { triggerStep: 12, title: "Welcome!", desc: "Your browser saves the key. Your new account is ready to go!" },
+    { triggerStep: 13, title: "All Done", desc: "The registration is finished and the system is ready for the next person." }
   ];
 
   const activeTraceSet = mode === 'login' ? traceDataLogin : traceDataRegister;
@@ -125,9 +125,17 @@ function App() {
       {/* FULL PAGE CINEMATIC TRANSITION */}
       <div className={`scene-transition ${isTransitioning ? 'active' : ''}`}>
         {isTransitioning && (
-           <h1 className="transition-text">
-             {mode === 'register' ? 'PHASE 1: REGISTRATION FLOW' : 'PHASE 2: LOGIN FLOW'}
-           </h1>
+          <div className="transition-content">
+            <h2 className="purpose-tagline">Backend Blueprint</h2>
+            <h1 className="transition-text">
+              {mode === 'register' ? 'PHASE 1: REGISTRATION FLOW' : 'PHASE 2: LOGIN FLOW'}
+            </h1>
+            <p className="purpose-desc">
+              {mode === 'register' 
+                ? 'Visualizing the secure journey of account creation from frontend to database.' 
+                : 'Understanding how identity is verified and sessions are established.'}
+            </p>
+          </div>
         )}
       </div>
 
