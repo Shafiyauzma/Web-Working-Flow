@@ -9,6 +9,34 @@ function App() {
   const [isTransitioning, setIsTransitioning] = useState(true); // Start in transition
   const traceRef = useRef(null);
 
+  // Track orientation to detect portrait→landscape rotation and reset to Phase 1
+  const wasPortrait = useRef(window.innerHeight > window.innerWidth);
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      const isNowPortrait = window.innerHeight > window.innerWidth;
+      const wasInPortrait = wasPortrait.current;
+      wasPortrait.current = isNowPortrait;
+
+      // If user just rotated FROM portrait TO landscape → reset to Phase 1
+      if (wasInPortrait && !isNowPortrait) {
+        setMode('register');
+        setStep(0);
+        setIsPlaying(true);
+        setIsTransitioning(true);
+      }
+    };
+
+    window.addEventListener('resize', handleOrientationChange);
+    // Also listen to the native orientation change event for real devices
+    window.addEventListener('orientationchange', handleOrientationChange);
+
+    return () => {
+      window.removeEventListener('resize', handleOrientationChange);
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, []);
+
   // Core Automation Loop
   useEffect(() => {
     // 1. Handle Cinematic Transition
