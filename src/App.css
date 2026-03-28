@@ -599,48 +599,207 @@ body {
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+
 /* =========================================
-   MOBILE RESPONSIVENESS
+   MOBILE — LANDSCAPE HORIZONTAL LAYOUT
+   All 3 columns stay side-by-side, scaled to fit.
    ========================================= */
+
+/* Tablet-ish screens: shrink columns but keep horizontal */
 @media (max-width: 1100px) {
-  .header-brand { width: auto; flex: 1; }
+  .header-brand { width: auto; flex: 1; min-width: 0; }
   .header-status { display: none; }
-  .three-column-layout { gap: 16px; }
-  .col-client { flex: 0 0 350px; }
-  .col-trace { flex: 0 0 300px; }
+  .header-title-text { font-size: 12px; }
+  .three-column-layout { gap: 12px; }
+  .col-client { flex: 0 0 300px; }
+  .col-trace { flex: 0 0 260px; }
 }
 
-@media (max-width: 900px) {
-  body, .app-container { overflow: auto; height: auto; min-height: 100vh; }
-  .content-wrapper { height: auto; overflow: visible; padding: 16px; }
-  .three-column-layout { flex-direction: column; height: auto; }
-  
-  .glass-panel { height: auto; min-height: 600px; }
-  .col-client, .col-trace { flex: 1 0 auto; width: 100%; }
-  
-  .col-arch { min-height: 700px; }
-  .arch-wrapper { min-height: 600px; }
+/* Mobile Landscape: keep 3 columns, compress header, scale everything */
+@media (max-height: 560px) and (orientation: landscape) {
+  body, .app-container {
+    overflow: hidden;
+    height: 100dvh;
+    width: 100dvw;
+  }
 
-  .transition-text { font-size: 2rem; }
-  .purpose-tagline { font-size: 1rem; }
-  .purpose-desc { font-size: 0.9rem; }
-  
-  .system-header { padding: 0 16px; height: auto; flex-direction: column; gap: 12px; padding-bottom: 12px; }
-  .header-brand { width: 100%; justify-content: center; }
+  .system-header {
+    height: 44px;
+    padding: 0 12px;
+  }
+
+  .header-title-text { font-size: 11px; }
+  .cute-logo-icon { width: 26px; height: 26px; }
+  .ctrl-btn { width: 26px; height: 26px; }
+
+  .content-wrapper {
+    padding: 8px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .three-column-layout {
+    flex-direction: row;   /* ← Keep 3 cols HORIZONTAL */
+    gap: 8px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Column sizing in landscape */
+  .col-client { flex: 0 0 220px; }
+  .col-arch   { flex: 1; }
+  .col-trace  { flex: 0 0 210px; }
+
+  .glass-panel {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  /* Amazon UI scaled down */
+  .amazon-nav { height: 36px; }
+  .amazon-brand { font-size: 1rem; }
+  .amazon-search { height: 26px; }
+  .amazon-subnav { height: 28px; font-size: 11px; gap: 10px; }
+  .amazon-card { min-height: 60px; padding: 8px; }
+  .amazon-card h3 { font-size: 12px; margin-bottom: 4px; }
+  .box-placeholder { height: 40px; }
+  .amazon-hero { padding: 8px; }
+
+  /* Modal box scaled down */
+  .amazon-modal-box { padding: 14px 12px; gap: 8px; border-radius: 10px; }
+  .amz-title { font-size: 15px; }
+  .amz-input label { font-size: 11px; }
+  .amz-input input { padding: 6px 8px; font-size: 12px; }
+  .amz-btn { padding: 8px; font-size: 12px; margin-top: 2px; }
+  .amz-terms { font-size: 9px; }
+
+  /* Architecture map scaled down */
+  .flow-mega-title { font-size: 0.75rem; padding: 12px 0 30px 0; letter-spacing: 1px; }
+  .cute-node { width: 100px; padding: 10px 6px; border-radius: 14px; }
+  .cute-node h3 { font-size: 10px; }
+  .cute-icon-container { width: 36px; height: 36px; border-radius: 10px; margin-bottom: 8px; }
+  .cute-icon-container svg { width: 16px; height: 16px; }
+
+  /* Execution trace scaled down */
+  .panel-header { padding: 10px 14px; font-size: 10px; }
+  .trace-wrapper { padding: 10px 14px 14px 14px; gap: 8px; }
+  .trace-title { font-size: 12px; }
+  .trace-desc { font-size: 11px; padding: 8px; margin-top: 4px; border-radius: 8px; line-height: 1.4; }
+  .trace-marker { width: 18px; height: 18px; }
+  .trace-marker .dot { width: 8px; height: 8px; }
+  .cute-check-small { width: 14px; height: 14px; }
+  .cute-check-small svg { width: 9px; height: 9px; }
+  .trace-line { left: 27px; }
+  .cute-trace { gap: 10px; padding: 4px; }
+
+  /* Success alert */
+  .amazon-alert-success { padding: 10px 12px; border-radius: 6px; }
+  .amz-alert-heading { font-size: 13px; }
+  .amz-alert-content p { font-size: 11px; }
+
+  /* Cinematic transition */
+  .transition-text { font-size: 1.4rem; letter-spacing: 2px; }
+  .purpose-tagline { font-size: 0.8rem; }
+  .purpose-desc { font-size: 0.75rem; }
 }
 
-@media (max-width: 500px) {
-  .cute-node { width: 130px; height: auto; padding: 16px 8px; }
-  .cute-node h3 { font-size: 11px; }
-  .cute-icon-container { width: 45px; height: 45px; }
-  .cute-icon-container svg { width: 20px; height: 20px; }
-  
-  .arch-node.browser { left: 25%; }
-  .arch-node.gateway { left: 75%; }
-  .arch-node.auth { left: 75%; }
-  .arch-node.database { left: 25%; }
-  
-  /* Packet trace adjustments */
-  .data-packet.step-5, .data-packet.step-6, .data-packet.step-9, .data-packet.step-10 { left: 75%; }
-  .data-packet.step-0, .data-packet.step-1, .data-packet.step-2, .data-packet.step-3, .data-packet.step-4, .data-packet.step-7, .data-packet.step-8, .data-packet.step-11, .data-packet.step-12 { left: 25%; }
+/* Very narrow landscape (e.g. older Android phones ~360px wide in portrait = ~640px landscape) */
+@media (max-height: 420px) and (orientation: landscape) {
+  .col-client { flex: 0 0 190px; }
+  .col-trace  { flex: 0 0 180px; }
+
+  .amazon-nav { height: 30px; }
+  .amazon-subnav { display: none; }
+  .amazon-modal-box { padding: 10px; gap: 6px; }
+  .amz-title { font-size: 13px; }
+  .amz-input input { padding: 4px 8px; font-size: 11px; }
+  .amz-btn { padding: 6px; font-size: 11px; }
+  .amz-terms { display: none; }  /* Hide on very small screens */
+
+  .cute-node { width: 82px; padding: 8px 4px; border-radius: 12px; }
+  .cute-node h3 { font-size: 9px; }
+  .cute-icon-container { width: 30px; height: 30px; margin-bottom: 6px; }
+  .cute-icon-container svg { width: 14px; height: 14px; }
+
+  .panel-header { padding: 8px 10px; font-size: 9px; }
+  .trace-wrapper { padding: 8px 10px; gap: 6px; }
+  .trace-title { font-size: 11px; }
+  .trace-desc { font-size: 10px; padding: 6px; }
+  .flow-mega-title { font-size: 0.65rem; padding: 8px 0 20px 0; }
+
+  .system-header { height: 38px; }
+  .cute-logo-icon { width: 22px; height: 22px; }
+  .header-title-text { font-size: 10px; }
+  .ctrl-btn { width: 24px; height: 24px; }
+}
+
+/* =========================================
+   PORTRAIT MOBILE — ROTATE SCREEN PROMPT
+   Show an overlay asking user to rotate their phone
+   ========================================= */
+
+/* Hidden by default on all screens */
+.rotate-prompt {
+  display: none;
+}
+
+/* Show ONLY in portrait on mobile */
+@media screen and (orientation: portrait) and (max-width: 900px) {
+  html, body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide the whole app UI */
+  .app-container > *:not(.rotate-prompt) {
+    display: none !important;
+  }
+
+  /* Show the rotate prompt fullscreen */
+  .rotate-prompt {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: radial-gradient(ellipse at 50% 60%, rgba(99,102,241,0.18) 0%, #0f1016 70%);
+    z-index: 99999;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .rotate-icon {
+    font-size: 5rem;
+    animation: spinRotate 2s ease-in-out infinite;
+    line-height: 1;
+  }
+
+  @keyframes spinRotate {
+    0%   { transform: rotate(0deg); }
+    30%  { transform: rotate(90deg); }
+    60%  { transform: rotate(90deg); }
+    100% { transform: rotate(90deg) scale(1.1); }
+  }
+
+  .rotate-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  .rotate-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.7;
+  }
 }

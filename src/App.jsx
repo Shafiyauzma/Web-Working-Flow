@@ -116,7 +116,14 @@ function App() {
 
   return (
     <div className="app-container">
-      
+
+      {/* PORTRAIT MOBILE: Rotate Screen Prompt */}
+      <div className="rotate-prompt">
+        <div className="rotate-icon">↻</div>
+        <h2 className="rotate-title">Rotate Your Phone</h2>
+        <p className="rotate-desc">This app is designed for landscape view.<br/>Please rotate your device horizontally.</p>
+      </div>
+
       {/* AMBIENT AURORA ORBS (Cute & Professional Vibe) */}
       <div className="ambient-orb orb-1"></div>
       <div className="ambient-orb orb-2"></div>
